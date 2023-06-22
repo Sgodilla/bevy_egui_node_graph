@@ -2,7 +2,7 @@ use std::{collections::BTreeMap, marker::PhantomData};
 
 use crate::{color_hex_utils::*, CategoryTrait, NodeTemplateIter, NodeTemplateTrait};
 
-use egui::*;
+use bevy_egui::egui::*;
 
 #[derive(Clone)]
 #[cfg_attr(feature = "persistence", derive(serde::Serialize, serde::Deserialize))]

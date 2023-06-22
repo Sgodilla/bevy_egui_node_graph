@@ -23,7 +23,7 @@ pub trait WidgetValueTrait: Default {
         &mut self,
         param_name: &str,
         node_id: NodeId,
-        ui: &mut egui::Ui,
+        ui: &mut bevy_egui::egui::Ui,
         user_state: &mut Self::UserState,
         node_data: &Self::NodeData,
     ) -> Vec<Self::Response>;
@@ -39,7 +39,7 @@ pub trait WidgetValueTrait: Default {
         &mut self,
         param_name: &str,
         _node_id: NodeId,
-        ui: &mut egui::Ui,
+        ui: &mut bevy_egui::egui::Ui,
         _user_state: &mut Self::UserState,
         _node_data: &Self::NodeData,
     ) -> Vec<Self::Response> {
@@ -54,7 +54,7 @@ pub trait WidgetValueTrait: Default {
 /// to the user.
 pub trait DataTypeTrait<UserState>: PartialEq + Eq {
     /// The associated port color of this datatype
-    fn data_type_color(&self, user_state: &mut UserState) -> egui::Color32;
+    fn data_type_color(&self, user_state: &mut UserState) -> bevy_egui::egui::Color32;
 
     /// The name of this datatype. Return type is specified as Cow<str> because
     /// some implementations will need to allocate a new string to provide an
@@ -105,7 +105,7 @@ where
     /// Additional UI elements to draw in the nodes, after the parameters.
     fn bottom_ui(
         &self,
-        ui: &mut egui::Ui,
+        ui: &mut bevy_egui::egui::Ui,
         node_id: NodeId,
         graph: &Graph<Self, Self::DataType, Self::ValueType>,
         user_state: &mut Self::UserState,
@@ -116,7 +116,7 @@ where
     /// UI to draw on the top bar of the node.
     fn top_bar_ui(
         &self,
-        _ui: &mut egui::Ui,
+        _ui: &mut bevy_egui::egui::Ui,
         _node_id: NodeId,
         _graph: &Graph<Self, Self::DataType, Self::ValueType>,
         _user_state: &mut Self::UserState,
@@ -132,7 +132,7 @@ where
     /// Defaults to showing param_name as a simple label.
     fn output_ui(
         &self,
-        ui: &mut egui::Ui,
+        ui: &mut bevy_egui::egui::Ui,
         _node_id: NodeId,
         _graph: &Graph<Self, Self::DataType, Self::ValueType>,
         _user_state: &mut Self::UserState,
@@ -150,11 +150,11 @@ where
     /// If the return value is None, the default color is set.
     fn titlebar_color(
         &self,
-        _ui: &egui::Ui,
+        _ui: &bevy_egui::egui::Ui,
         _node_id: NodeId,
         _graph: &Graph<Self, Self::DataType, Self::ValueType>,
         _user_state: &mut Self::UserState,
-    ) -> Option<egui::Color32> {
+    ) -> Option<bevy_egui::egui::Color32> {
         None
     }
 
@@ -168,7 +168,7 @@ where
     /// Default implementation does nothing.
     fn separator(
         &self,
-        _ui: &mut egui::Ui,
+        _ui: &mut bevy_egui::egui::Ui,
         _node_id: NodeId,
         _param_id: AnyParameterId,
         _graph: &Graph<Self, Self::DataType, Self::ValueType>,

@@ -32,7 +32,7 @@ pub use ui_state::*;
 pub mod node_finder;
 pub use node_finder::*;
 
-/// The inner details of the egui implementation. Most egui code lives here.
+/// The inner details of the bevy_egui::egui implementation. Most bevy_egui::egui code lives here.
 pub mod editor_ui;
 pub use editor_ui::*;
 

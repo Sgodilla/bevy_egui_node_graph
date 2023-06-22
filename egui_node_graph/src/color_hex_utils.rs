@@ -1,6 +1,6 @@
-use egui::Color32;
+use bevy_egui::egui::Color32;
 
-/// Converts a hex string with a leading '#' into a egui::Color32.
+/// Converts a hex string with a leading '#' into a bevy_egui::egui::Color32.
 /// - The first three channels are interpreted as R, G, B.
 /// - The fourth channel, if present, is used as the alpha value.
 /// - Both upper and lowercase characters can be used for the hex values.

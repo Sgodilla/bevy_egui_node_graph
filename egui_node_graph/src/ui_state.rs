@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Copy, Clone)]
 #[cfg_attr(feature = "persistence", derive(Serialize, Deserialize))]
 pub struct PanZoom {
-    pub pan: egui::Vec2,
+    pub pan: bevy_egui::egui::Vec2,
     pub zoom: f32,
 }
 
@@ -25,9 +25,9 @@ pub struct GraphEditorState<NodeData, DataType, ValueType, NodeTemplate, UserSta
     /// currently selected node.
     pub selected_nodes: Vec<NodeId>,
     /// The mouse drag start position for an ongoing box selection.
-    pub ongoing_box_selection: Option<egui::Pos2>,
+    pub ongoing_box_selection: Option<bevy_egui::egui::Pos2>,
     /// The position of each node.
-    pub node_positions: SecondaryMap<NodeId, egui::Pos2>,
+    pub node_positions: SecondaryMap<NodeId, bevy_egui::egui::Pos2>,
     /// The node finder is used to create new nodes.
     pub node_finder: Option<NodeFinder<NodeTemplate>>,
     /// The panning of the graph viewport.
@@ -41,7 +41,7 @@ impl<NodeData, DataType, ValueType, NodeKind, UserState>
     pub fn new(default_zoom: f32) -> Self {
         Self {
             pan_zoom: PanZoom {
-                pan: egui::Vec2::ZERO,
+                pan: bevy_egui::egui::Vec2::ZERO,
                 zoom: default_zoom,
             },
             ..Default::default()
@@ -70,7 +70,7 @@ impl PanZoom {
     pub fn adjust_zoom(
         &mut self,
         zoom_delta: f32,
-        point: egui::Vec2,
+        point: bevy_egui::egui::Vec2,
         zoom_min: f32,
         zoom_max: f32,
     ) {

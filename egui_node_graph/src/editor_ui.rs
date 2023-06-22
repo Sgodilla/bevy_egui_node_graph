@@ -4,8 +4,8 @@ use crate::color_hex_utils::*;
 use crate::utils::ColorUtils;
 
 use super::*;
-use egui::epaint::{CubicBezierShape, RectShape};
-use egui::*;
+use bevy_egui::egui::epaint::{CubicBezierShape, RectShape};
+use bevy_egui::egui::*;
 
 pub type PortLocations = std::collections::HashMap<AnyParameterId, Pos2>;
 pub type NodeRects = std::collections::HashMap<NodeId, Rect>;
@@ -80,7 +80,7 @@ pub struct GraphNodeWidget<'a, NodeData, DataType, ValueType> {
     pub node_id: NodeId,
     pub ongoing_drag: Option<(NodeId, AnyParameterId)>,
     pub selected: bool,
-    pub pan: egui::Vec2,
+    pub pan: bevy_egui::egui::Vec2,
 }
 
 impl<NodeData, DataType, ValueType, NodeTemplate, UserResponse, UserState, CategoryType>
@@ -442,7 +442,7 @@ where
 }
 
 fn draw_connection(painter: &Painter, src_pos: Pos2, dst_pos: Pos2, color: Color32) {
-    let connection_stroke = egui::Stroke { width: 5.0, color };
+    let connection_stroke = bevy_egui::egui::Stroke { width: 5.0, color };
 
     let control_scale = ((dst_pos.x - src_pos.x) / 2.0).max(30.0);
     let src_control = src_pos + Vec2::X * control_scale;
@@ -498,7 +498,7 @@ where
         ui: &mut Ui,
         user_state: &mut UserState,
     ) -> Vec<NodeResponse<UserResponse, NodeData>> {
-        let margin = egui::vec2(15.0, 5.0);
+        let margin = bevy_egui::egui::vec2(15.0, 5.0);
         let mut responses = Vec::<NodeResponse<UserResponse, NodeData>>::new();
 
         let background_color;
@@ -680,7 +680,7 @@ where
         {
             let port_type = graph.any_param_type(param_id).unwrap();
 
-            let port_rect = Rect::from_center_size(port_pos, egui::vec2(10.0, 10.0));
+            let port_rect = Rect::from_center_size(port_pos, bevy_egui::egui::vec2(10.0, 10.0));
 
             let sense = if ongoing_drag.is_some() {
                 Sense::hover()
@@ -792,7 +792,7 @@ where
         }
 
         // Draw the background shape.
-        // NOTE: This code is a bit more involved than it needs to be because egui
+        // NOTE: This code is a bit more involved than it needs to be because bevy_egui::egui
         // does not support drawing rectangles with asymmetrical round corners.
 
         let (shape, outline) = {
